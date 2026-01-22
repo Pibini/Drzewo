@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Mountain Adventure</title>
+
+<style>
+body {
+    background:#111;
+    color:#eee;
+    font-family: monospace;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+
+/* GŁÓWNE OKNO GRY */
+#game {
+    width:900px;
+    background:#222;
+    padding:50px;
+}
+
+/* TEKST HISTORII */
+#text {
+    font-size: 28px;
+    line-height: 1.5;
+}
+
+/* PRZYCISKI WYBORÓW */
+button {
+    display:block;
+    width:100%;
+    margin:20px 0;
+    padding:20px;
+    font-size: 26px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div id="game">
+    <p id="text"></p>
+    <div id="buttons"></div>
+</div>
+
+<script>
+const story = {
+start: {
+    text: "You decided to go with your friend to the top of the mountain for a night trip. It's about -25°C and you feel too warm. What do you do?",
+    choices: [
+        { text: "Take off some layers", next: "takeoff" },
+        { text: "Stay very warmly dressed", next: "swiatlo" }
+    ]
+},
+
+swiatlo: {
+    text: "Your friend suddenly collapses and faints. He is breathing but unconscious.",
+    choices: [
+        { text: "Call GOPR for help", next: "callh" },
+        { text: "Call your parents", next: "callp" }
+    ]
+},
+
+callp: {
+    text: "Your parents tell you to call GOPR. When you do, it is already too late. He dies.",
+    choices: [{ text: "Try again", next: "start" }]
+},
+
+callh: {
+    text: "Rescue arrives in time and takes him to hospital. What do you do?",
+    choices: [
+        { text: "Go further", next: "ncum" },
+        { text: "Go back home", next: "cum" }
+    ]
+},
+
+cum: {
+    text: "You pass a small shop. You have some money and only 10 minutes left home.",
+    choices: [
+        { text: "Go into the shop", next: "gunn" },
+        { text: "Go straight home", next: "strit" }
+    ]
+},
+
+gunn: {
+    text: "Inside the shop you see a dead body and hear screams from the back.",
+    choices: [
+        { text: "Run away", next: "awayrun" },
+        { text: "Call the police", next: "cupses" }
+    ]
+},
+
+awayrun: {
+    text: "One of the killers notices you and shoots you.",
+    choices: [{ text: "Try again", next: "start" }]
+},
+
+cupses: {
+    text: "You forgot the phone is on speaker. You are killed.",
+    choices: [{ text: "Try again", next: "start" }]
+},
+
+strit: {
+    text: "You reach home safely, but your friend dies in hospital.",
+    choices: [{ text: "Play again", next: "start" }]
+},
+
+ncum: {
+    text: "Your phone battery dies. You get lost and break your leg.",
+    choices: [
+        { text: "Shout for help", next: "oi" },
+        { text: "Try to return", next: "legg" }
+    ]
+},
+
+legg: {
+    text: "You bandage your leg but meet a bear.",
+    choices: [
+        { text: "Try to run", next: "runleg" },
+        { text: "Show dominance", next: "dominancee" }
+    ]
+},
+
+runleg: {
+    text: "You have a broken leg. You die.",
+    choices: [{ text: "Try again", next: "start" }]
+},
+
+dominancee: {
+    text: "The bear ignores you and eats you.",
+    choices: [{ text: "Try again", next: "start" }]
+},
+
+oi: {
+    text: "No one hears you. You die from exhaustion.",
+    choices: [{ text: "Try again", next: "start" }]
+},
+
+takeoff: {
+    text: "You feel better, but halfway your friend wants to go back.",
+    choices: [
+        { text: "Convince him to continue", next: "win" },
+        { text: "Turn back", next: "lose" }
+    ]
+},
+
+lose: {
+    text: "You meet a pack of wolves.",
+    choices: [
+        { text: "Sacrifice yourself", next: "you" },
+        { text: "Sacrifice your friend", next: "me" }
+    ]
+},
+
+you: {
+    text: "Wolves attack you both.",
+    choices: [{ text: "Try again", next: "start" }]
+},
+
+me: {
+    text: "You accidentally kill your friend. Wolves finish you.",
+    choices: [{ text: "Try again", next: "start" }]
+},
+
+win: {
+    text: "At the top, the trail splits.",
+    choices: [
+        { text: "Go through the forest", next: "forest" },
+        { text: "Go along the ski slope", next: "slope" }
+    ]
+},
+
+slope: {
+    text: "You start slipping on the icy slope.",
+    choices: [
+        { text: "Return to forest", next: "back" },
+        { text: "Go further", next: "go" }
+    ]
+},
+
+go: {
+    text: "You see a steel cable on the slope.",
+    choices: [
+        { text: "Climb the cable", next: "line" },
+        { text: "Keep distance", next: "keep" }
+    ]
+},
+
+line: {
+    text: "The cable tightens and cuts you in half.",
+    choices: [{ text: "Try again", next: "start" }]
+},
+
+keep: {
+    text: "The cable still reaches you.",
+    choices: [{ text: "Try again", next: "start" }]
+},
+
+back: {
+    text: "You slip and hit a tree.",
+    choices: [{ text: "Try again", next: "start" }]
+},
+
+forest: {
+    text: "You lose the trail in the forest.",
+    choices: [
+        { text: "Look calmly for the path", next: "calmly" },
+        { text: "Take a shortcut", next: "short" }
+    ]
+},
+
+short: {
+    text: "You fall into an abyss.",
+    choices: [{ text: "Try again", next: "start" }]
+},
+
+calmly: {
+    text: "You reach the top. You are very thirsty.",
+    choices: [
+        { text: "Drink water", next: "water" },
+        { text: "Save water", next: "save" }
+    ]
+},
+
+save: {
+    text: "Your friend dies from dehydration.",
+    choices: [{ text: "Try again", next: "start" }]
+},
+
+water: {
+    text: "You slide down the mountain.",
+    choices: [
+        { text: "Carefully down", next: "down" },
+        { text: "Into fresh snow", next: "leave" }
+    ]
+},
+
+leave: {
+    text: "You safely reach the bottom. YOU WIN!",
+    choices: [{ text: "Play again", next: "start" }]
+},
+
+down: {
+    text: "You fall from a cliff.",
+    choices: [{ text: "Try again", next: "start" }]
+}
+};
+
+const text = document.getElementById("text");
+const buttons = document.getElementById("buttons");
+
+function show(scene) {
+    text.innerText = story[scene].text;
+    buttons.innerHTML = "";
+    story[scene].choices.forEach(c => {
+        const b = document.createElement("button");
+        b.innerText = c.text;
+        b.onclick = () => show(c.next);
+        buttons.appendChild(b);
+    });
+}
+
+show("start");
+</script>
+
+</body>
+</html>
