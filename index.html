@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<title>Mountain Adventure</title>
+    <meta charset="UTF-8">
+    <title>Mountain Adventure</title>
 
-<style>
-body {
-    background:#111;
-    color:#eee;
-    font-family: monospace;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    margin:0;
-}
+    <style>
+        body {
+            background:#111;
+            color:#eee;
+            font-family: monospace;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            margin:0;
+        }
 
-/* GŁÓWNE OKNO GRY */
-#game {
-    width:900px;
-    background:#222;
-    padding:50px;
-}
+        /* GŁÓWNE OKNO GRY */
+        #game {
+            width:900px;
+            background:#222;
+            padding:50px;
+        }
 
-/* TEKST HISTORII */
-#text {
-    font-size: 28px;
-    line-height: 1.5;
-}
+        /* TEKST HISTORII */
+        #text {
+            font-size: 28px;
+            line-height: 1.5;
+        }
 
-/* PRZYCISKI WYBORÓW */
-button {
-    display:block;
-    width:100%;
-    margin:20px 0;
-    padding:20px;
-    font-size: 26px;
-    cursor:pointer;
-}
-</style>
+        /* PRZYCISKI WYBORÓW */
+        button {
+            display:block;
+            width:100%;
+            margin:20px 0;
+            padding:20px;
+            font-size: 26px;
+            cursor:pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,224 +49,225 @@ button {
 </div>
 
 <script>
-const story = {
-start: {
-    text: "You decided to go with your friend to the top of the mountain for a night trip. It's about -25°C and you feel too warm. What do you do?",
-    choices: [
-        { text: "Take off some layers", next: "takeoff" },
-        { text: "Stay very warmly dressed", next: "swiatlo" }
-    ]
-},
+    const story = {
+        start: {
+            text: "It is late evening when you and your friend begin the climb. The mountains are silent, the wind howls between the peaks, and the temperature drops to -25°C.Sweat runs down your back and you feel uncomfortably warm under your clothes. What do you do?",
+            choices: [
+                { text: "Take off some layers", next: "takeoff" },
+                { text: "Stay very warmly dressed", next: "swiatlo" }
+            ]
+        },
 
-swiatlo: {
-    text: "Your friend suddenly collapses and faints. He is breathing but unconscious.",
-    choices: [
-        { text: "Call GOPR for help", next: "callh" },
-        { text: "Call your parents", next: "callp" }
-    ]
-},
+        swiatlo: {
+            text: "You ignore the discomfort and continue walking. Suddenly, your friend stumbles, collapses into the snow, and stops responding. His face is pale, his breath shallow, but he is still alive. The mountains feel hostile and uncaring. Panic rises in your chest.",
+            choices: [
+                { text: "Call GOPR for help", next: "callh" },
+                { text: "Call your parents", next: "callp" }
+            ]
+        },
 
-callp: {
-    text: "Your parents tell you to call GOPR. When you do, it is already too late. He dies.",
-    choices: [{ text: "Try again", next: "start" }]
-},
+        callp: {
+            text: "Your parents answer, confused and scared. They tell you to immediately call GOPR. When you finally do, precious minutes have passed. Rescue arrives too late. Your friend never wakes up. The mountains claim another life.",
+            choices: [{ text: "Try again", next: "start" }]
+        },
 
-callh: {
-    text: "Rescue arrives in time and takes him to hospital. What do you do?",
-    choices: [
-        { text: "Go further", next: "ncum" },
-        { text: "Go back home", next: "cum" }
-    ]
-},
+        callh: {
+            text: "You call GOPR and carefully follow their instructions. After what feels like an eternity, rescue lights cut through the darkness. Your friend is taken to the hospital. Exhausted and shaken, you are left alone with a decision.",
+            choices: [
+                { text: "Go further", next: "ncum" },
+                { text: "Go back home", next: "cum" }
+            ]
+        },
 
-cum: {
-    text: "You pass a small shop. You have some money and only 10 minutes left home.",
-    choices: [
-        { text: "Go into the shop", next: "gunn" },
-        { text: "Go straight home", next: "strit" }
-    ]
-},
+        cum: {
+            text: "You head back down the mountain. On the way home, you pass a small, dimly lit shop. Snow crunches beneath your boots. You have a little money and only ten minutes left to reach safety.",
+            choices: [
+                { text: "Go into the shop", next: "gunn" },
+                { text: "Go straight home", next: "strit" }
+            ]
+        },
 
-gunn: {
-    text: "Inside the shop you see a dead body and hear screams from the back.",
-    choices: [
-        { text: "Run away", next: "awayrun" },
-        { text: "Call the police", next: "cupses" }
-    ]
-},
+        gunn: {
+            text: "Inside the shop, the air is cold and smells metallic. You notice a body lying on the floor. From the back room, muffled screams echo. Your heart starts pounding violently.",
+            choices: [
+                { text: "Run away", next: "awayrun" },
+                { text: "Call the police", next: "cupses" }
+            ]
+        },
 
-awayrun: {
-    text: "One of the killers notices you and shoots you.",
-    choices: [{ text: "Try again", next: "start" }]
-},
+        awayrun: {
+            text: "You turn to escape, but it’s too late. Someone notices you. A loud bang echoes through the night, and everything goes dark.",
+            choices: [{ text: "Try again", next: "start" }]
+        },
 
-cupses: {
-    text: "You forgot the phone is on speaker. You are killed.",
-    choices: [{ text: "Try again", next: "start" }]
-},
+        cupses: {
+            text: "Your shaking hands dial the police, but you forget your phone is on speaker. The screams stop. Footsteps approach. You never leave the shop.",
+            choices: [{ text: "Try again", next: "start" }]
+        },
 
-strit: {
-    text: "You reach home safely, but your friend dies in hospital.",
-    choices: [{ text: "Play again", next: "start" }]
-},
+        strit: {
+            text: "You make it home safely. Warmth surrounds you, but guilt does not leave. Days later, you learn your friend died in the hospital. Survival comes at a cost.",
+            choices: [{ text: "Play again", next: "start" }]
+        },
 
-ncum: {
-    text: "Your phone battery dies. You get lost and break your leg.",
-    choices: [
-        { text: "Shout for help", next: "oi" },
-        { text: "Try to return", next: "legg" }
-    ]
-},
+        ncum: {
+            text: "You decide to continue the climb alone. The cold drains your strength. Suddenly, your phone battery dies. Lost and disoriented, you slip and feel a sharp pain in your leg.",
+            choices: [
+                { text: "Shout for help", next: "oi" },
+                { text: "Try to return", next: "legg" }
+            ]
+        },
 
-legg: {
-    text: "You bandage your leg but meet a bear.",
-    choices: [
-        { text: "Try to run", next: "runleg" },
-        { text: "Show dominance", next: "dominancee" }
-    ]
-},
+        legg: {
+            text: "You improvise a bandage and limp through the snow. Then you hear heavy breathing. A massive bear steps into view between the trees.",
+            choices: [
+                { text: "Try to run", next: "runleg" },
+                { text: "Show dominance", next: "dominancee" }
+            ]
+        },
 
-runleg: {
-    text: "You have a broken leg. You die.",
-    choices: [{ text: "Try again", next: "start" }]
-},
+        runleg: {
+            text: "Pain explodes in your leg as you attempt to flee. You fall. The cold and darkness take you.",
+            choices: [{ text: "Try again", next: "start" }]
+        },
 
-dominancee: {
-    text: "The bear ignores you and eats you.",
-    choices: [{ text: "Try again", next: "start" }]
-},
+        dominancee: {
+            text: "You try to look strong, but fear betrays you. The bear is unimpressed. Nature shows no mercy.",
+            choices: [{ text: "Try again", next: "start" }]
+        },
 
-oi: {
-    text: "No one hears you. You die from exhaustion.",
-    choices: [{ text: "Try again", next: "start" }]
-},
+        oi: {
+            text: "You scream until your throat burns. No answer comes. The cold slowly steals your strength and consciousness.",
+            choices: [{ text: "Try again", next: "start" }]
+        },
 
-takeoff: {
-    text: "You feel better, but halfway your friend wants to go back.",
-    choices: [
-        { text: "Convince him to continue", next: "win" },
-        { text: "Turn back", next: "lose" }
-    ]
-},
+        takeoff: {
+            text: "You remove a layer of clothing and feel immediate relief. The climb continues, but halfway up your friend hesitates and suggests turning back.",
+            choices: [
+                { text: "Convince him to continue", next: "win" },
+                { text: "Turn back", next: "lose" }
+            ]
+        },
 
-lose: {
-    text: "You meet a pack of wolves.",
-    choices: [
-        { text: "Sacrifice yourself", next: "you" },
-        { text: "Sacrifice your friend", next: "me" }
-    ]
-},
+        lose: {
+            text: "As you turn back, glowing eyes appear in the darkness. A pack of wolves surrounds you, moving silently through the snow.",
+            choices: [
+                { text: "Sacrifice yourself", next: "you" },
+                { text: "Sacrifice your friend", next: "me" }
+            ]
+        },
 
-you: {
-    text: "Wolves attack you both.",
-    choices: [{ text: "Try again", next: "start" }]
-},
+        you: {
+            text: "You step forward, but the wolves attack both of you anyway. The night ends in silence.",
+            choices: [{ text: "Try again", next: "start" }]
+        },
 
-me: {
-    text: "You accidentally kill your friend. Wolves finish you.",
-    choices: [{ text: "Try again", next: "start" }]
-},
+        me: {
+            text: "In panic, you push your friend away. The wolves attack immediately. In panic you foll into darkness.",
+            choices: [{ text: "Try again", next: "start" }]
+        },
 
-win: {
-    text: "At the top, the trail splits.",
-    choices: [
-        { text: "Go through the forest", next: "forest" },
-        { text: "Go along the ski slope", next: "slope" }
-    ]
-},
+        win: {
+            text: "Fortunately, after a few minutes, you convince him to keep going. You reach the top. The view is breathtaking, but there is not a single soul alive. The trail splits into two paths.",
+            choices: [
+                { text: "Go through the forest", next: "forest" },
+                { text: "Go along the ski slope", next: "slope" }
+            ]
+        },
 
-slope: {
-    text: "You start slipping on the icy slope.",
-    choices: [
-        { text: "Return to forest", next: "back" },
-        { text: "Go further", next: "go" }
-    ]
-},
+        slope: {
+            text: "The ski slope is icy and steep. Your boots struggle for grip as you begin to slide.",
+            choices: [
+                { text: "Return to forest", next: "back" },
+                { text: "Go further", next: "go" }
+            ]
+        },
 
-go: {
-    text: "You see a steel cable on the slope.",
-    choices: [
-        { text: "Climb the cable", next: "line" },
-        { text: "Keep distance", next: "keep" }
-    ]
-},
+        go: {
+            text: "You notice a steel cable stretching across the slope, partially hidden by snow.",
+            choices: [
+                { text: "Climb the cable", next: "line" },
+                { text: "Keep distance", next: "keep" }
+            ]
+        },
 
-line: {
-    text: "The cable tightens and cuts you in half.",
-    choices: [{ text: "Try again", next: "start" }]
-},
+        line: {
+            text: "The cable suddenly tightens with deadly force. You never realize the danger in time.",
+            choices: [{ text: "Try again", next: "start" }]
+        },
 
-keep: {
-    text: "The cable still reaches you.",
-    choices: [{ text: "Try again", next: "start" }]
-},
+        keep: {
+            text: "You try to avoid it, but the cable snaps toward you anyway. The mountain is unforgiving.",
+            choices: [{ text: "Try again", next: "start" }]
+        },
 
-back: {
-    text: "You slip and hit a tree.",
-    choices: [{ text: "Try again", next: "start" }]
-},
+        back: {
+            text: "You lose balance and slam into a frozen tree. Everything fades.",
+            choices: [{ text: "Try again", next: "start" }]
+        },
 
-forest: {
-    text: "You lose the trail in the forest.",
-    choices: [
-        { text: "Look calmly for the path", next: "calmly" },
-        { text: "Take a shortcut", next: "short" }
-    ]
-},
+        forest: {
+            text: "The forest is quiet and confusing. Snow-covered trees block the stars. The path disappears.",
+            choices: [
+                { text: "Look calmly for the path", next: "calmly" },
+                { text: "Take a shortcut", next: "short" }
+            ]
+        },
 
-short: {
-    text: "You fall into an abyss.",
-    choices: [{ text: "Try again", next: "start" }]
-},
+        short: {
+            text: "The ground gives way beneath you. You fall into the darkness below.",
+            choices: [{ text: "Try again", next: "start" }]
+        },
 
-calmly: {
-    text: "You reach the top. You are very thirsty.",
-    choices: [
-        { text: "Drink water", next: "water" },
-        { text: "Save water", next: "save" }
-    ]
-},
+        calmly: {
+            text: "Staying calm, you find the trail again. You reach the summit, exhausted and extremely thirsty.",
+            choices: [
+                { text: "Drink water", next: "water" },
+                { text: "Save water", next: "save" }
+            ]
+        },
 
-save: {
-    text: "Your friend dies from dehydration.",
-    choices: [{ text: "Try again", next: "start" }]
-},
+        save: {
+            text: "You ration the water too strictly. Your friend collapses beside you, never to rise again.",
+            choices: [{ text: "Try again", next: "start" }]
+        },
 
-water: {
-    text: "You slide down the mountain.",
-    choices: [
-        { text: "Carefully down", next: "down" },
-        { text: "Into fresh snow", next: "leave" }
-    ]
-},
+        water: {
+            text: "You drink and regain strength. Carefully, you begin your descent down the mountain.",
+            choices: [
+                { text: "Carefully down", next: "down" },
+                { text: "Into fresh snow", next: "leave" }
+            ]
+        },
 
-leave: {
-    text: "You safely reach the bottom. YOU WIN!",
-    choices: [{ text: "Play again", next: "start" }]
-},
+        leave: {
+            text: "The snow slows your fall. At dawn, you reach the bottom alive. Against all odds, you survived. YOU WIN!",
+            choices: [{ text: "Play again", next: "start" }]
+        },
 
-down: {
-    text: "You fall from a cliff.",
-    choices: [{ text: "Try again", next: "start" }]
-}
-};
+        down: {
+            text: "One wrong step sends you over a cliff. The mountain decides your fate.",
+            choices: [{ text: "Try again", next: "start" }]
+        }
+    };
 
-const text = document.getElementById("text");
-const buttons = document.getElementById("buttons");
+    const text = document.getElementById("text");
+    const buttons = document.getElementById("buttons");
 
-function show(scene) {
-    text.innerText = story[scene].text;
-    buttons.innerHTML = "";
-    story[scene].choices.forEach(c => {
-        const b = document.createElement("button");
-        b.innerText = c.text;
-        b.onclick = () => show(c.next);
-        buttons.appendChild(b);
-    });
-}
+    function show(scene) {
+        text.innerText = story[scene].text;
+        buttons.innerHTML = "";
+        story[scene].choices.forEach(c => {
+            const b = document.createElement("button");
+            b.innerText = c.text;
+            b.onclick = () => show(c.next);
+            buttons.appendChild(b);
+        });
+    }
 
-show("start");
+    show("start");
 </script>
+
 
 </body>
 </html>
